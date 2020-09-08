@@ -1,5 +1,5 @@
 #!/bin/bash
-docker stop algorithms_algorithms_1 \
-	&& docker rm algorithms_algorithms_1 \
-	&& docker rmi algorithms_algorithms \
+docker stop web-frontend-hw_wfhw_1 \
+	&& docker rm web-frontend-hw_wfhw_1 \
+	&& docker rmi web-frontend-hw_wfhw \
 	&& docker-compose up -d;

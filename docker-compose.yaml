@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  algorithms:
+  wfhw:
     build:
       context: .
       dockerfile: ./.devcontainer/Dockerfile.deploy
