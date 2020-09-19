@@ -1,6 +1,7 @@
 var DETAIL_IMAGE_SELECTOR = '[data-image-role="target"]';
 var DETAIL_TITLE_SELECTOR = '[data-image-role="title"]';
 var DETAIL_FRAME_SELECTOR = '[data-image-role="frame"]';
+var CURRENT_IMAGE = 0;
 var THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]';
 var HIDDEN_DETAIL_CLASS = 'hidden-detail';
 var TINY_EFFECT_CLASS = 'is-tiny';
@@ -70,6 +71,24 @@ function addKeyPressHandler() {
       hideDetails();
     }
   });
+}
+
+function prev() {
+    if (CURRENT_IMAGE > 0) {
+        CURRENT_IMAGE = CURRENT_IMAGE - 1;
+    }
+    var thumbnailArray = getThumbnailsArray();
+    setDetailsFromThumb(thumbnailArray[CURRENT_IMAGE]);
+    console.log(thumbnailArray);
+}
+
+function next() {
+    if (CURRENT_IMAGE < 4) {
+        CURRENT_IMAGE = CURRENT_IMAGE + 1;
+    }
+    var thumbnailArray = getThumbnailsArray();
+    setDetailsFromThumb(thumbnailArray[CURRENT_IMAGE]);
+    console.log(thumbnailArray);
 }
 
 function initializeEvents() {
