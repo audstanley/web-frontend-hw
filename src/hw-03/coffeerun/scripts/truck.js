@@ -23,8 +23,6 @@
                 console.log(this.db.get(id));
             }, this);
         }
-
-
     }
 
     App.Truck = Truck;
