@@ -6,7 +6,7 @@
     var Truck = App.Truck;
     var DataStore = App.DataStore;
     var RemoteDataStore = App.RemoteDataStore;
-    var remoteDs = new RemoteDataStore("https://co.audstanley.com/coffeeorders");
+    var remoteDs = new RemoteDataStore("https://cod.audstanley.com/coffeeorders");
     var FormHandler = App.FormHandler;
     var Validation = App.Validation;
     var CheckList = App.CheckList;
@@ -18,8 +18,12 @@
     
     //formHandler.addSubmitHandler(truck.createOrder.bind(truck));
     formHandler.addSubmitHandler(function(data) {
-        truck.createOrder.call(truck, data);
-        checkList.addRow.call(checkList, data)
+        truck.createOrder.call(truck, data)
+            .then(() => {
+                checkList.addRow.call(checkList, data);
+            }, () => {
+                alert('Server unreachable. Try again late.');
+            });
     });
 
     formHandler.addInputHandler(Validation.isCompanyEmail);

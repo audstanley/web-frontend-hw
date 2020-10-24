@@ -10,19 +10,22 @@
         }
         createOrder(order) {
             console.log(`Adding order for ${order.emailAddress}`);
-            this.db.add(order.emailAddress, order);
+            return this.db.add(order.emailAddress, order);
         }
         deliverOrder(customerId) {
             console.log(`Delerving order for ${customerId}`);
-            this.db.remove(customerId);
+            return this.db.remove(customerId);
         }
         printOrder() {
-            var customerIdArray = Object.keys(this.db.getAll());
-            console.log(`Truck #${this.truckId} has pending orders:`);
-
-            customerIdArray.forEach(function(id) {
-                console.log(this.db.get(id));
-            }, this);
+            Object.keys(this.db.getAll()
+                .then(allData => {
+                    allData.forEach(function(id) {
+                        this.db.get(id).then(data => {
+                            console.log(data);
+                        });
+                    }, this);
+                    console.log(`Truck #${this.truckId} has pending orders:`);
+            }));
         }
     }
 
